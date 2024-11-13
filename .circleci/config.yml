@@ -27,7 +27,9 @@ jobs:
       - image: maven:3.8.5-openjdk-11
     steps:
       - checkout
-
+      - run:
+          name: Upload Coverage Report to Codecov
+          command: bash <(curl -s https://codecov.io/bash)
 
 workflows:
   build-and-upload:
