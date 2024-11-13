@@ -17,7 +17,7 @@ jobs:
       - restore_cache:
           key: cache-{{ checksum "/tmp/CIRCLECI_CACHE_KEY" }}
       - run:
-          name: Run tests and generate coverage report
+          name: Run tests and generate coverage
           command: mvn verify
       - store_test_results:
           path: target/surefire-reports
@@ -25,16 +25,7 @@ jobs:
           key: cache-{{ checksum "/tmp/CIRCLECI_CACHE_KEY" }}
           paths:
             - ~/.m2/repository
-      - codecov/upload:
-          file: target/site/jacoco/jacoco.xml  
-
-  deploy:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - run:
-          name: deploy
-          command: 
+      - codecov/upload
 
 workflows:
   build-and-test:
