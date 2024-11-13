@@ -6,6 +6,7 @@
 
 [![CircleCI](https://undefined/status-badge/img/gh/akrambourouina/ceri-m1-techniques-de-test/tree/master.svg?style=svg)](https://undefined/status-badge/redirect/gh/akrambourouina/ceri-m1-techniques-de-test/tree/master)
 [![codecov](https://codecov.io/github/akrambourouina/ceri-m1-techniques-de-test/graph/badge.svg?token=5IZT1CZ00A)](https://codecov.io/github/akrambourouina/ceri-m1-techniques-de-test)
+
 ## Introduction
 
 Vous allez à travers ces projet mettre en application une partie des aspects évoqués en cours vis à vis des techniques de tests.  
