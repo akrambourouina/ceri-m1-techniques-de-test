@@ -22,10 +22,24 @@ jobs:
           name: Upload to Codecov
           command: bash <(curl -s https://codecov.io/bash)
 
+  upload-to-codecov:
+    docker:
+      - image: maven:3.8.5-openjdk-11
+    steps:
+      - checkout
+
+
 workflows:
   build-and-upload:
     jobs:
       - build:
+          filters:
+            branches:
+              only:
+                - master
+      - upload-to-codecov:
+          requires:
+            - build
           filters:
             branches:
               only:
