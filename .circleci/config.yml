@@ -1,5 +1,8 @@
-
 version: 2.1
+
+orbs:
+  codecov: codecov/codecov@4.0.1
+
 jobs:
   test-java:
     docker:
@@ -14,6 +17,7 @@ jobs:
       - restore_cache:
           key: cache-{{ checksum "/tmp/CIRCLECI_CACHE_KEY" }}
       - run:
+          name: Run tests and generate coverage report
           command: mvn verify
       - store_test_results:
           path: target/surefire-reports
@@ -21,19 +25,18 @@ jobs:
           key: cache-{{ checksum "/tmp/CIRCLECI_CACHE_KEY" }}
           paths:
             - ~/.m2/repository
+      - codecov/upload:
+          file: target/site/jacoco/jacoco.xml  
+
   deploy:
-    # This is an example deploy job, not actually used by the workflow
     docker:
       - image: cimg/base:stable
     steps:
-      # Replace this with steps to deploy to users
       - run:
           name: deploy
-          command: '#e.g. ./deploy.sh'
+          command: 
+
 workflows:
   build-and-test:
     jobs:
       - test-java
-    # - deploy:
-    #     requires:
-    #       - test-java
