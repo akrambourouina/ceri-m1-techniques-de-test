@@ -25,7 +25,6 @@ jobs:
           key: cache-{{ checksum "/tmp/CIRCLECI_CACHE_KEY" }}
           paths:
             - ~/.m2/repository
-      - codecov/upload
 
 
 workflows:
