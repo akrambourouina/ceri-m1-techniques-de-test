@@ -15,7 +15,7 @@ public class PokemonFactory implements IPokemonFactory {
         // Calcul du pourcentage des IVs
         double ivPercentage = (attack + defense + stamina) / 45.0 * 100;
 
-        // Création de l'objet Pokemon
+        // Création du Pokémon avec l'index passé en paramètre
         return new Pokemon(index, "NomPokemon", cp, hp, dust, candy, attack, defense, stamina, ivPercentage);
     }
 }
