@@ -15,17 +15,22 @@ public class PokemonFactoryTest {
 
     @Test
     void testCreatePokemon() {
-        // Crée un Pokémon avec un index spécifique
         int index = 1; // Utilisation de l'index 1 pour tester
-        Pokemon createdPokemon = pokemonFactory.createPokemon(index, 613, 64, 4000, 4);
+        int cp = 613;   // CP attendu
+        int hp = 64;
+        int dust = 4000;
+        int candy = 4;
+
+        // Crée un Pokémon avec un index spécifique
+        Pokemon createdPokemon = pokemonFactory.createPokemon(index, cp, hp, dust, candy);
 
         assertNotNull(createdPokemon);
         assertEquals(index, createdPokemon.getIndex()); // Vérifie que l'index est correctement assigné
         assertEquals("NomPokemon", createdPokemon.getName()); // Nom générique
-        assertEquals(613, createdPokemon.getCp());
-        assertEquals(64, createdPokemon.getHp());
-        assertEquals(4000, createdPokemon.getDust());
-        assertEquals(4, createdPokemon.getCandy());
+        assertEquals(cp, createdPokemon.getCp()); // Vérifie que le CP est bien 613
+        assertEquals(hp, createdPokemon.getHp());
+        assertEquals(dust, createdPokemon.getDust());
+        assertEquals(candy, createdPokemon.getCandy());
 
         // Les IVs sont aléatoires, donc nous vérifions qu'ils sont dans la plage attendue
         assertTrue(createdPokemon.getAttack() >= 0 && createdPokemon.getAttack() <= 15);
