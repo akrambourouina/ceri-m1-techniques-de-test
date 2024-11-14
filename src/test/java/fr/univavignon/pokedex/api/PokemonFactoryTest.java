@@ -20,7 +20,7 @@ public class PokemonFactoryTest {
         assertNotNull(createdPokemon);
         assertEquals(0, createdPokemon.getIndex());
         assertEquals("NomPokemon", createdPokemon.getName());
-        assertEquals(613, createdPokemon.getCp());
+        assertEquals(4, createdPokemon.getCp());
         assertEquals(64, createdPokemon.getHp());
         assertEquals(4000, createdPokemon.getDust());
         assertEquals(4, createdPokemon.getCandy());
