@@ -59,4 +59,13 @@ public class Pokedex implements IPokedex {
     public Pokemon createPokemon(int index, int cp, int hp, int dust, int candy) {
         return pokemonFactory.createPokemon(index, cp, hp, dust, candy);
     }
+
+    // Ajout des méthodes pour récupérer les dépendances injectées
+    public IPokemonMetadataProvider getMetadataProvider() {
+        return metadataProvider;
+    }
+
+    public IPokemonFactory getPokemonFactory() {
+        return pokemonFactory;
+    }
 }
