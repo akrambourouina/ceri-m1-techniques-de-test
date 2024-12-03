@@ -16,7 +16,7 @@ public class PokemonFactory implements IPokemonFactory {
             PokemonMetadata metadata = metadataProvider.getPokemonMetadata(index);
 
             // Calculate IV (this is just an example, the actual calculation might depend on other factors)
-            double iv = ((metadata.getAttack()+metadata.getDefense()+metadata.getStamina())/45.0);
+            double iv = ((metadata.getAttack() + metadata.getDefense() + metadata.getStamina()) / 45.0);
 
             // Create and return the Pokemon instance with the computed IV
             return new Pokemon(
