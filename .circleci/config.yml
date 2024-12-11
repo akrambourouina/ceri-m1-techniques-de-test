@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   codecov: codecov/codecov@4.0.1
+  github-pages: circleci/github-pages@0.1.4
 
 jobs:
   build:
@@ -19,6 +20,12 @@ jobs:
           name: Generate JaCoCo Report
           command: mvn jacoco:report
       - run:
+          name: Generate Javadoc
+          command: mvn javadoc:javadoc
+      - run:
+          name: Run Checkstyle
+          command: mvn checkstyle:check
+      - run:
           name: Upload to Codecov
           command: bash <(curl -s https://codecov.io/bash)
 
@@ -28,6 +35,17 @@ jobs:
     steps:
       - checkout
 
+  deploy-javadoc:
+    docker:
+      - image: maven:3.8.5-openjdk-11
+    steps:
+      - checkout
+      - run:
+          name: Generate Javadoc
+          command: mvn javadoc:javadoc
+      - github-pages/deploy:
+          branch: gh-pages
+          folder: target/apidocs
 
 workflows:
   build-and-upload:
@@ -38,6 +56,13 @@ workflows:
               only:
                 - master
       - upload-to-codecov:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
+      - deploy-javadoc:
           requires:
             - build
           filters:

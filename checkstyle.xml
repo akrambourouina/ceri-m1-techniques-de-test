@@ -4,13 +4,23 @@
         "https://checkstyle.org/dtds/configuration_1_3.dtd">
 <module name="Checker">
     <module name="TreeWalker">
+        <!-- Vérifie les espaces après les mots-clés -->
         <module name="WhitespaceAfter"/>
         <module name="WhitespaceAround"/>
+
+        <!-- Vérifie les commentaires Javadoc -->
+        <module name="JavadocMethod">
+            <property name="allowMissingParamTags" value="true"/>
+        </module>
+        <module name="JavadocType"/>
     </module>
+    <module name="JavadocPackage"/>
+    <!-- Vérifie la longueur des lignes -->
     <module name="LineLength">
         <property name="max" value="150"/>
     </module>
-    <!-- Ignore FileTabCharacter to allow tabulations -->
+
+    <!-- Vérifie les tabulations -->
     <module name="FileTabCharacter">
         <property name="eachLine" value="false"/>
     </module>
