@@ -49,7 +49,11 @@ public class Pokedex implements IPokedex {
         sortedPokemons.sort(order);
         return Collections.unmodifiableList(sortedPokemons);
     }
-
+    /**
+     * Récupère le Pokémon à l'index spécifié.
+     * @param index l'index du Pokémon dans la liste.
+     * @return le Pokémon correspondant à cet index.
+     */
     @Override
     public PokemonMetadata getPokemonMetadata(int index) throws PokedexException {
         return metadataProvider.getPokemonMetadata(index);
