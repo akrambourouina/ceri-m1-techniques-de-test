@@ -55,6 +55,7 @@ jobs:
             git add .
             git commit -m "Deploy Javadoc"
             git push https://$bala@github.com/akrambourouina/ceri-m1-techniques-de-test.git gh-pages
+            
 
 
 workflows:
