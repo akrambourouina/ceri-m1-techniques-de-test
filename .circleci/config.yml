@@ -2,7 +2,6 @@ version: 2.1
 
 orbs:
   codecov: codecov/codecov@4.0.1
-  github-pages: circleci/github-pages@0.1.4
 
 jobs:
   build:
@@ -43,9 +42,17 @@ jobs:
       - run:
           name: Generate Javadoc
           command: mvn javadoc:javadoc
-      - github-pages/deploy:
-          branch: gh-pages
-          folder: target/apidocs
+      - run:
+          name: Deploy Javadoc to GitHub Pages
+          command: |
+            git config --global user.name "circleci"
+            git config --global user.email "circleci@users.noreply.github.com"
+            git clone --branch gh-pages https://github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git target/gh-pages
+            cp -R target/apidocs/* target/gh-pages/
+            cd target/gh-pages
+            git add .
+            git commit -m "Deploy Javadoc"
+            git push origin gh-pages
 
 workflows:
   build-and-upload:
