@@ -53,7 +53,7 @@ jobs:
             git config --global user.name "circleci"
             git config --global user.email "circleci@users.noreply.github.com"
             git clone --branch gh-pages https://oauth2:${akram}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git target/gh-pages || git clone https://github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git target/gh-pages
-            cp -R target/apidocs/* target/gh-pages/
+            cp -R target/site/apidocs/* target/gh-pages/
             cd target/gh-pages
             git add .
             git commit -m "Deploy Javadoc"
