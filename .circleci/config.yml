@@ -21,23 +21,57 @@ jobs:
       - run:
           name: Upload to Codecov
           command: bash <(curl -s https://codecov.io/bash)
+      - run:
+          name: Generate Javadoc
+          command: mvn javadoc:javadoc
+      - persist_to_workspace:
+          root: target
+          paths:
+            - javadoc
 
-  upload-to-codecov:
+  deploy-docs:
     docker:
-      - image: maven:3.8.5-openjdk-11
+      - image: cimg/base:stable
     steps:
       - checkout
-
+      - attach_workspace:
+          at: target
+      - run:
+          name: Configure Git
+          command: |
+            git config --global user.name "CircleCI Bot"
+            git config --global user.email "circleci-bot@example.com"
+      - run:
+          name: Publish Javadoc to GitHub Pages
+          command: |
+            git clone https://github.com/<VOTRE-UTILISATEUR>/<VOTRE-REPO>.git repo
+            cd repo
+            if ! git show-ref --verify --quiet refs/heads/gh-pages; then
+              echo "Creating gh-pages branch"
+              git checkout --orphan gh-pages
+              git rm -rf .
+              echo "GitHub Pages initialized" > index.html
+              git add index.html
+              git commit -m "Initial commit for GitHub Pages"
+              git push origin gh-pages
+            else
+              git checkout gh-pages
+            fi
+            rm -rf *
+            cp -R ../target/javadoc/* .
+            git add .
+            git commit -m "Update Javadoc from CircleCI build"
+            git push origin gh-pages
 
 workflows:
-  build-and-upload:
+  build-and-deploy:
     jobs:
       - build:
           filters:
             branches:
               only:
                 - master
-      - upload-to-codecov:
+      - deploy-docs:
           requires:
             - build
           filters:
