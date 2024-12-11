@@ -43,11 +43,16 @@ jobs:
           name: Generate Javadoc
           command: mvn javadoc:javadoc
       - run:
+          name: Create gh-pages branch if it doesn't exist
+          command: |
+            git fetch origin
+            git branch -a | grep remotes/origin/gh-pages || git checkout --orphan gh-pages
+      - run:
           name: Deploy Javadoc to GitHub Pages
           command: |
             git config --global user.name "circleci"
             git config --global user.email "circleci@users.noreply.github.com"
-            git clone --branch gh-pages https://github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git target/gh-pages
+            git clone --branch gh-pages https://github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git target/gh-pages || git clone https://github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git target/gh-pages
             cp -R target/apidocs/* target/gh-pages/
             cd target/gh-pages
             git add .
