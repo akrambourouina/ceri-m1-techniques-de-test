@@ -57,8 +57,8 @@ jobs:
       - run:
           name: Deploy Javadoc to GitHub Pages
           command: |
-            git config --global user.name "circleci"
-            git config --global user.email "circleci@users.noreply.github.com"
+            git config --global user.name "akrambourouina"
+            git config --global user.email "akram.bourouina@alumni.univ-avignon.fr"
             # Utiliser un token sécurisé pour l'authentification.
             git clone --branch gh-pages https://$akram@github.com/akrambourouina/ceri-m1-techniques-de-test.git target/gh-pages || git clone https://github.com/akrambourouina/ceri-m1-techniques-de-test.git target/gh-pages
             cp -R target/site/apidocs/* target/gh-pages/
