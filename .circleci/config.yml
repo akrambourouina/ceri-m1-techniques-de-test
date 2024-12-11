@@ -42,18 +42,7 @@ jobs:
       - run:
           name: Generate Javadoc
           command: mvn javadoc:javadoc
-      - run:
-          name: Create gh-pages branch if it doesn't exist
-          command: |
-            git fetch origin
-            # Vérifier si la branche gh-pages existe, sinon créer la branche.
-            if git show-ref --verify --quiet refs/heads/gh-pages; then
-              echo "La branche gh-pages existe déjà.";
-            else
-              echo "La branche gh-pages n'existe pas, création en cours...";
-              git checkout -b gh-pages origin/master
-              git push origin gh-pages
-            fi
+
       - run:
           name: Deploy Javadoc to GitHub Pages
           command: |
