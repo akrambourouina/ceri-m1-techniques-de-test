@@ -44,7 +44,7 @@ jobs:
       - run:
           name: Publish Javadoc to GitHub Pages
           command: |
-            git clone https://github.com/<VOTRE-UTILISATEUR>/<VOTRE-REPO>.git repo
+            git clone https://github.com/<akrambourouina>/<ceri-m1-techniques-de-test>.git repo
             cd repo
             if ! git show-ref --verify --quiet refs/heads/gh-pages; then
               echo "Creating gh-pages branch"
