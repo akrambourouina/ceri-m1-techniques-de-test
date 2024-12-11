@@ -52,7 +52,7 @@ jobs:
           command: |
             git config --global user.name "circleci"
             git config --global user.email "circleci@users.noreply.github.com"
-            git clone --branch gh-pages https://oauth2:$akram@github.com/akrambourouina/ceri-m1-techniques-de-test.git target/gh-pages || git clone https://github.com/${akrambourouina}/ceri-m1-techniques-de-test.git target/gh-pages
+            git clone --branch gh-pages https://oauth2:${akram}@github.com/akrambourouina/ceri-m1-techniques-de-test.git target/gh-pages
             cp -R target/site/apidocs/* target/gh-pages/
             cd target/gh-pages
             git add .
