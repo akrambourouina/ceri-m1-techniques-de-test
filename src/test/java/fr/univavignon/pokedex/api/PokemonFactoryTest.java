@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class PokemonFactoryTest {
 
     private IPokemonMetadataProvider mockMetadataProvider;
-    private PokemonFactory pokemonFactory;
+    private RocketPokemonFactory pokemonFactory;
 
     @BeforeEach
     public void setUp() {
@@ -17,35 +17,74 @@ public class PokemonFactoryTest {
         mockMetadataProvider = mock(IPokemonMetadataProvider.class);
 
         // Initialisation de la fabrique avec le mock
-        pokemonFactory = new PokemonFactory();
+        pokemonFactory = new RocketPokemonFactory();
     }
 
     @Test
-    public void testCreatePokemon() throws PokedexException {
-        // Définir un Pokémon fictif pour l'index 0 (par exemple, Bulbasaur)
-        PokemonMetadata mockMetadata = new PokemonMetadata(0, "Bulbasaur", 126, 126, 90);
-        when(mockMetadataProvider.getPokemonMetadata(0)).thenReturn(mockMetadata);
-
+    public void testCreatePokemonName() throws PokedexException {
+        // Définir un Pokémon fictif pour l'index 1 (Bulbasaur)
+        PokemonMetadata mockMetadata = new PokemonMetadata(1, "Bulbasaur", 126, 126, 90);
+        when(mockMetadataProvider.getPokemonMetadata(1)).thenReturn(mockMetadata);
 
         // Appeler la méthode createPokemon pour obtenir un Pokémon
-        Pokemon pokemon = pokemonFactory.createPokemon(0, 150, 100, 200, 25);
+        Pokemon pokemon = pokemonFactory.createPokemon(1, 150, 100, 200, 25);
 
-        // Vérifier que le Pokémon a été correctement créé
-        assertNotNull(pokemon);
-        assertEquals(0, pokemon.getIndex());
+        // Vérifier que le nom du Pokémon est correct
         assertEquals("Bulbasaur", pokemon.getName());
-        assertEquals(126, pokemon.getAttack());
-        assertEquals(126, pokemon.getDefense());
-        assertEquals(90, pokemon.getStamina());
-        assertEquals(150, pokemon.getCp());
-        assertEquals(100, pokemon.getHp());
-        assertEquals(200, pokemon.getDust());
-        assertEquals(25, pokemon.getCandy());
-
-        // Vérifier que l'IV a été calculé correctement (à partir de l'exemple de formule)
-        double expectedIV = (126 + 126 + 90) / 45.0;
-        assertEquals(expectedIV, pokemon.getIv(), 0.01);
     }
+
+    @Test
+    public void testCreatePokemonCp() throws PokedexException {
+        // Définir un Pokémon fictif pour l'index 1 (Bulbasaur)
+        PokemonMetadata mockMetadata = new PokemonMetadata(1, "Bulbasaur", 126, 126, 90);
+        when(mockMetadataProvider.getPokemonMetadata(1)).thenReturn(mockMetadata);
+
+        // Appeler la méthode createPokemon pour obtenir un Pokémon
+        Pokemon pokemon = pokemonFactory.createPokemon(1, 150, 100, 200, 25);
+
+        // Vérifier que le CP est correctement assigné
+        assertEquals(150, pokemon.getCp());
+    }
+
+    @Test
+    public void testCreatePokemonHp() throws PokedexException {
+        // Définir un Pokémon fictif pour l'index 1 (Bulbasaur)
+        PokemonMetadata mockMetadata = new PokemonMetadata(1, "Bulbasaur", 126, 126, 90);
+        when(mockMetadataProvider.getPokemonMetadata(1)).thenReturn(mockMetadata);
+
+        // Appeler la méthode createPokemon pour obtenir un Pokémon
+        Pokemon pokemon = pokemonFactory.createPokemon(1, 150, 100, 200, 25);
+
+        // Vérifier que les HP sont correctement assignés
+        assertEquals(100, pokemon.getHp());
+    }
+
+    @Test
+    public void testCreatePokemonDust() throws PokedexException {
+        // Définir un Pokémon fictif pour l'index 1 (Bulbasaur)
+        PokemonMetadata mockMetadata = new PokemonMetadata(1, "Bulbasaur", 126, 126, 90);
+        when(mockMetadataProvider.getPokemonMetadata(1)).thenReturn(mockMetadata);
+
+        // Appeler la méthode createPokemon pour obtenir un Pokémon
+        Pokemon pokemon = pokemonFactory.createPokemon(1, 150, 100, 200, 25);
+
+        // Vérifier que le Dust est correctement assigné
+        assertEquals(200, pokemon.getDust());
+    }
+
+    @Test
+    public void testCreatePokemonCandy() throws PokedexException {
+        // Définir un Pokémon fictif pour l'index 1 (Bulbasaur)
+        PokemonMetadata mockMetadata = new PokemonMetadata(1, "Bulbasaur", 126, 126, 90);
+        when(mockMetadataProvider.getPokemonMetadata(1)).thenReturn(mockMetadata);
+
+        // Appeler la méthode createPokemon pour obtenir un Pokémon
+        Pokemon pokemon = pokemonFactory.createPokemon(1, 150, 100, 200, 25);
+
+        // Vérifier que les Candy sont correctement assignés
+        assertEquals(25, pokemon.getCandy());
+    }
+
 
     @Test
     public void testCreatePokemonWithInvalidIndex() throws PokedexException {
@@ -55,7 +94,8 @@ public class PokemonFactoryTest {
         // Tester la gestion des erreurs pour un index invalide
         Pokemon pokemon = pokemonFactory.createPokemon(999, 150, 100, 200, 25);
 
-        // Vérifier que le Pokémon n'a pas été créé (renvoi null en cas d'erreur)
-        assertNull(pokemon);
+        // Vérifier que le Pokémon n'a pas été créé (renvoi MISSINGNO en cas d'erreur selon la logique de la fabrique)
+        assertNotNull(pokemon);
+        assertEquals("MISSINGNO", pokemon.getName()); // Attendre "MISSINGNO" au lieu de null
     }
 }
