@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class test {
 
 	private IPokemonMetadataProvider mockMetadataProvider;
-	private RocketPokemonFactory pokemonFactory;
+	private PokemonFactory pokemonFactory;
 
 	@BeforeEach
 	public void setUp() {
@@ -18,7 +18,7 @@ public class test {
 		mockMetadataProvider = mock(IPokemonMetadataProvider.class);
 
 		// Initialisation de la fabrique avec le mock
-		pokemonFactory = new RocketPokemonFactory();
+		pokemonFactory = new PokemonFactory();
 	}
 
 	@Test
