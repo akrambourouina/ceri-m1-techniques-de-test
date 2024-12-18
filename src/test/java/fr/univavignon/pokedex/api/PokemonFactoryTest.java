@@ -26,6 +26,7 @@ public class PokemonFactoryTest {
         PokemonMetadata mockMetadata = new PokemonMetadata(0, "Bulbasaur", 126, 126, 90);
         when(mockMetadataProvider.getPokemonMetadata(0)).thenReturn(mockMetadata);
 
+
         // Appeler la méthode createPokemon pour obtenir un Pokémon
         Pokemon pokemon = pokemonFactory.createPokemon(0, 150, 100, 200, 25);
 
