@@ -43,10 +43,10 @@ class PokemonMetadataProviderTest {
     @Test
     void testGetPokemonMetadata_ValidIndexIvysaur() throws PokedexException {
         // Test pour récupérer les métadonnées d'un autre Pokémon valide
-        PokemonMetadata metadata = metadataProvider.getPokemonMetadata(1); // Ivysaur
+        PokemonMetadata metadata = metadataProvider.getPokemonMetadata(0); // Ivysaur
 
         assertNotNull(metadata, "Metadata should not be null");
-        assertEquals(1, metadata.getIndex(), "Index should be 1");
+        assertEquals(0, metadata.getIndex(), "Index should be 1");
         assertEquals("Ivysaur", metadata.getName(), "Name should be Ivysaur");
         assertEquals(156, metadata.getAttack(), "Attack should be 156");
         assertEquals(158, metadata.getDefense(), "Defense should be 158");
