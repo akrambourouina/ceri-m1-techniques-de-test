@@ -7,7 +7,7 @@
 ![CircleCI](https://circleci.com/gh/akrambourouina/ceri-m1-techniques-de-test/tree/master.svg?style=svg)
 [![codecov](https://codecov.io/github/akrambourouina/ceri-m1-techniques-de-test/graph/badge.svg?token=5IZT1CZ00A)](https://codecov.io/github/akrambourouina/ceri-m1-techniques-de-test)
 [![CircleCI](https://circleci.com/gh/akrambourouina/ceri-m1-techniques-de-test/tree/master.svg?style=shield)](https://circleci.com/gh/akrambourouina/ceri-m1-techniques-de-test)
-![Checkstyle](https://akrambourouina.github.io/ceri-m1-techniques-de-test/)
+
 
 ## Introduction
 
