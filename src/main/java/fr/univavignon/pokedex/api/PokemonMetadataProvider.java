@@ -13,10 +13,9 @@ public class PokemonMetadataProvider implements IPokemonMetadataProvider {
     public PokemonMetadataProvider() {
         metadataDatabase = new HashMap<>();
         // Initialisation des métadonnées fictives pour les Pokémon
-        metadataDatabase.put(0, new PokemonMetadata(0, "Bulbasaur", 126, 126, 90));
-        metadataDatabase.put(1, new PokemonMetadata(1, "Ivysaur", 156, 158, 120));
+        metadataDatabase.put(1, new PokemonMetadata(1, "Bulbasaur", 126, 126, 90));
+        metadataDatabase.put(0, new PokemonMetadata(0, "Ivysaur", 156, 158, 120));
         metadataDatabase.put(2, new PokemonMetadata(2, "Venusaur", 198, 200, 160));
-        // Ajouter plus de Pokémon selon le besoin...
     }
 
     @Override
