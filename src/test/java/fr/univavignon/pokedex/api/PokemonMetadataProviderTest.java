@@ -20,10 +20,10 @@ class PokemonMetadataProviderTest {
     @Test
     void testGetPokemonMetadata_ValidIndex() throws PokedexException {
         // Test pour récupérer les métadonnées d'un Pokémon valide
-        PokemonMetadata metadata = metadataProvider.getPokemonMetadata(0); // Bulbasaur
+        PokemonMetadata metadata = metadataProvider.getPokemonMetadata(1); // Bulbasaur
 
         assertNotNull(metadata, "Metadata should not be null");
-        assertEquals(0, metadata.getIndex(), "Index should be 0");
+        assertEquals(1, metadata.getIndex(), "Index should be 0");
         assertEquals("Bulbasaur", metadata.getName(), "Name should be Bulbasaur");
         assertEquals(126, metadata.getAttack(), "Attack should be 126");
         assertEquals(126, metadata.getDefense(), "Defense should be 126");
